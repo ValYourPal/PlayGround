@@ -1,0 +1,109 @@
+.theOcean {
+    display: flex;
+}
+
+.playerUno {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: azure;
+    margin: 50px;
+}
+
+.playerDos {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: brown;
+    margin: 50px;
+}
+
+.matrix div {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    margin: 2px;
+
+}
+
+.theBay {
+    width: 500px;
+    height: 500px;
+    margin: 40px;
+    background-color: chocolate;
+}
+
+.onextwoSlot {
+    width: 100px;
+    height: 50px;
+    background-color: cornflowerblue;
+    margin: 15px;
+    display: flex;
+}
+
+.onextwoSlot-vert {
+    width: 50px;
+    height: 100px;
+    background-color: cornflowerblue;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.onexthreeSlot {
+    width: 150px;
+    height: 50px;
+    background-color: crimson;
+    margin: 15px;
+    display: flex;
+}
+
+.onexthreeSlot-vert {
+    width: 50px;
+    height: 150px;
+    background-color: crimson;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.onexfourSlot {
+    width: 200px;
+    height: 50px;
+    background-color: cyan;
+    margin: 15px;
+    display: flex;
+}
+
+.onexfourSlot-vert {
+    width: 50px;
+    height: 200px;
+    background-color: cyan;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.onexfiveSlot {
+    width: 250px;
+    height: 50px;
+    background-color: yellow;
+    margin: 15px;
+    display: flex;
+}
+
+.onexfiveSlot-vert {
+    width: 50px;
+    height: 250px;
+    background-color: yellow;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ship div {
+    width: 50px;
+    height: 50px;
+}
