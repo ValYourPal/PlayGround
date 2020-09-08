@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
  //drag and drops
     ships.forEach(ship => ship.addEventListener('dragstart', moveStart)) 
-    
+
     player1Matrix.forEach(blank => blank.addEventListener('dragstart', moveStart))
 
     player1Matrix.forEach(blank => blank.addEventListener('dragover', moveOver))
@@ -128,18 +128,37 @@ document.addEventListener('DOMContentLoaded', () => {
         let lShipIndex = parseInt(shipLastNode.substr(-1));
         let endOfShipID = lShipIndex + parseInt(this.dataset.id);
         
-        
+
+        //um.. this is how it stops wraping around.. i dont know any better ideas.. 
+        const notWrapHori = [0,9,18,27,36,45,54,63,72,1,10,19,28,37,46,55,64,73,2,11,20,29,38,47,56,65,74];
+        let newNotHori = notWrapHori.splice(0,9 * lShipIndex)
+
+        const notWrapVert = [80,79,78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,49,48,47,46,45]
+        let newNotVert = notWrapVert.splice(0,9*lShipIndex)
         heldshipIndex = parseInt(shipSizeIndex.substr(-1))
 
         endOfShipID = endOfShipID - heldshipIndex
 
-        if (notRotated) {
+        //checks so that you cant place onto another ship
+
+        let isTaken = player1Matrix[parseInt(this.dataset.id)].classList.contains('taken')
+
+        if (!isTaken && notRotated && !newNotHori.includes(endOfShipID)) {
             for (let i = 0; i<heldShipLength; i++)
             {
-                player1Matrix[parseInt(this.dataset.id) + i].classList.add('taken', shipClass);
+                player1Matrix[parseInt(this.dataset.id) - heldshipIndex + i].classList.add('taken', shipClass);
             }
-        }
+        } else if (!isTaken && !notRotated && !newNotVert.includes(endOfShipID))
+        {
+            for (let i = 0; i < heldShipLength; i++)
+            {
+                player1Matrix[parseInt(this.dataset.id) - heldshipIndex + (dimension * i)].classList.add('taken', shipClass)
 
+
+            }
+        } else return
+
+        theBay.removeChild(heldShip)
 
     }
 
