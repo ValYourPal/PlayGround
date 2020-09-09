@@ -11,22 +11,27 @@
 
     <body>
         <div class = "theOcean">
-            <div class = "matrix playerUno"></div>
-            <div class = "matrix playerDos"></div>
+            <div class = "battleship-matrix playerUno"></div>
+            <div class = "battleship-matrix playerDos"></div>
         </div>
     </body>
 
-    <div class = "thingsToShowAfterStart">
-        <button id= "start">Click to Start</button>
-        <button id= "rotate">Rotate H/V</button>
-        <h3 id = "turn">P1 Turn</h3>
-        <h3 id = "placeholder"></h3>
+    <div class = "theOcean thingsToShowAfterStart">
+        <div class ="buttons" id="buttonsGone">
+            <button id= "start" class="btns">Click to Start</button>
+            <button id= "rotate" class="btns">Rotate H/V</button>
+        </div>
+        <h3 id = "turn" class = "displayedText">P1 Turn</h3>
+        <h3 id = "placeholder" class = "displayedText"></h3>
     </div>
 
-    <div class = "theBay">
-        <div class = "ship onextwoSlot" draggable="true"><div id="onextwo-0"></div><div id="onextwo-1"></div></div>
-        <div class = "ship onexthreeSlot" draggable="true"><div id="onexthree-0"></div><div id="onexthree-1"></div><div id="onexthree-2"></div></div>
-        <div class = "ship onexfourSlot" draggable="true"><div id="onexfour-0"></div><div id="onexfour-1"></div><div id="onexfour-2"></div><div id="onexfour-3"></div></div>
-        <div class = "ship onexfiveSlot" draggable="true"><div id="onexfive-0"></div><div id="onexfive-1"></div><div id="onexfive-2"></div><div id="onexfive-3"></div><div id="onexfive-4"></div></div>
+    <div class = "theOcean">
+        <div class = "theBay">
+            <div class = "ship onextwoSlot" draggable="true"><div id="onextwo-0"></div><div id="onextwo-1"></div></div>
+            <div class = "ship onexthreeSlot" draggable="true"><div id="onexthree-0"></div><div id="onexthree-1"></div><div id="onexthree-2"></div></div>
+            <div class = "ship onexfourSlot" draggable="true"><div id="onexfour-0"></div><div id="onexfour-1"></div><div id="onexfour-2"></div><div id="onexfour-3"></div></div>
+            <div class = "ship onexfiveSlot" draggable="true"><div id="onexfive-0"></div><div id="onexfive-1"></div><div id="onexfive-2"></div><div id="onexfive-3"></div><div id="onexfive-4"></div></div>
+        </div>
     </div>
+  
 </html>

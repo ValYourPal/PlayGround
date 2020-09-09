@@ -26,9 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const message = document.querySelector('#placeholder')
 
+    const buttonsThatShouldDisappear = document.getElementById('buttonsGone')
+
     const player1Matrix = []
     const player2Matrix = []
     let notRotated = true
+
+    let isThereAWinner = false;
+    let playerTurn = 'p1'
    
 
     const dimension = 9
@@ -130,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
 
         //um.. this is how it stops wraping around.. i dont know any better ideas.. 
+        //Maybe use react.. but.. thats too much..
         const notWrapHori = [0,9,18,27,36,45,54,63,72,1,10,19,28,37,46,55,64,73,2,11,20,29,38,47,56,65,74];
         let newNotHori = notWrapHori.splice(0,9 * lShipIndex)
 
@@ -146,13 +152,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isTaken && notRotated && !newNotHori.includes(endOfShipID)) {
             for (let i = 0; i<heldShipLength; i++)
             {
-                player1Matrix[parseInt(this.dataset.id) - heldshipIndex + i].classList.add('taken', shipClass);
+                let shipDirectionCurrent
+
+                if(i === 0) shipDirectionCurrent = 'start'
+                if(i === heldShipLength - 1) shipDirectionCurrent = 'end'
+                player1Matrix[parseInt(this.dataset.id) - heldshipIndex + i].classList.add('taken', 'horizontal', shipDirectionCurrent, shipClass);
             }
         } else if (!isTaken && !notRotated && !newNotVert.includes(endOfShipID))
         {
             for (let i = 0; i < heldShipLength; i++)
             {
-                player1Matrix[parseInt(this.dataset.id) - heldshipIndex + (dimension * i)].classList.add('taken', shipClass)
+                let shipDirectionCurrent
+
+                if(i === 0) shipDirectionCurrent = 'start'
+                if(i === heldShipLength - 1) shipDirectionCurrent = 'end'
+                player1Matrix[parseInt(this.dataset.id) - heldshipIndex + (dimension * i)].classList.add('taken', 'vertical', shipDirectionCurrent, shipClass)
 
 
             }
@@ -163,7 +177,89 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function moveDropEnd() {
+        console.log("droping as finished")
+    }
+
+    // Functionality of game
+
+    function gameOn(){
+        if (isThereAWinner) return;
+        if (playerTurn === 'p1')
+        {
+            turn.innerHTML = 'P1 Turn, which is you... the person looking at this..'
+            player1Matrix.forEach(blank => blank.addEventListener('click', function(z) {
+                hitIt(blank);
+            }))
+        }
+
+    }
+
+    initiateclick.addEventListener('click', () => {
+        buttonsThatShouldDisappear.style.display = 'none'
+        theBay.style.display = 'none'
+        gameOn()
+        })
+    
+
+    let onextwoCounter = 0;
+    let onexthreeCounter = 0;
+    let onexfourCounter = 0;
+    let onexfiveCounter = 0;
+
+    function hitIt(blank) {
+        if (!blank.classList.contains('hit') && !blank.classList.contains('missed'))
+        {
+            if (blank.classList.contains('onextwo')) onextwoCounter++;
+            if (blank.classList.contains('onexthree')) onexthreeCounter++;
+            if (blank.classList.contains('onexfour')) onexfourCounter++;
+            if (blank.classList.contains('onexfive')) onexfiveCounter++;
+            theEndisNear();
+        }
         
+
+        if(blank.classList.contains('taken')) {
+            blank.classList.add('hit');
+            
+        } 
+        else {
+            blank.classList.add('missed')
+        }
+        
+    }
+
+
+    function theEndisNear() {
+        if (onextwoCounter === 2)
+        {
+            message.innerHTML = 'Your one by two ship has been sunk!! NOOOOOOO';
+            onextwoCounter = 10;
+        }
+        if (onexthreeCounter === 3)
+        {
+            message.innerHTML = 'Your one by three ship has been sunk!! NOOOOOOO';
+            onexthreeCounter = 10;
+        }
+        if (onexfourCounter === 4)
+        {
+            message.innerHTML = 'Your one by four ship has been sunk!! NOOOOOOO';
+            onexfourCounter = 10;
+        }
+        if (onexfiveCounter === 5)
+        {
+            message.innerHTML = 'Your one by five ship has been sunk!! NOOOOOOO';
+            onexfiveCounter = 10;
+        }
+
+        if ((onextwoCounter + onexthreeCounter + onexfourCounter + onexfiveCounter) === 40)
+        {
+            message.innerHTML = "YOU LOST!!! NOOOO";
+            gameEnds();
+        }
+    }
+
+    function gameEnds() {
+        isThereAWinner = true;
+        initiateclick.removeEventListener('click', gameOn)
     }
 
 })

@@ -1,128 +1,152 @@
 .theOcean {
     display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
-.playerUno {
-    width: 500px;
-    height: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: azure;
-    margin: 50px;
+.battleship-matrix {
+    margin: 2vmin;
+    display: grid;
+    background-color: rgb(51, 216, 194);
+    grid-template-rows: repeat(9,5.2vmin);
+    grid-template-columns: repeat(9,5.2vmin);
 }
 
-.playerDos {
-    width: 500px;
-    height: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: brown;
-    margin: 50px;
+.buttons {
+    font-size: 1.7vmin;
 }
 
-.matrix div {
-    width: 50px;
-    height: 50px;
-    margin: 2px;
+.battleship-matrix div {
+    border: 1px solid rgba(17, 0, 255, 0.2);
+}
 
+.taken,
+.ship {
+    background-color: rgb(255, 186, 95);
+}
+
+.taken.start.vertical {
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+
+.taken.end.vertical {
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.taken.start.horizontal {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.taken.end.horizontal {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
 }
 
 .theBay {
-    width: 500px;
-    height: 500px;
-    margin: 40px;
-    background-color: chocolate;
+    display: flex;
+}
+
+
+.ship > div {
+    width: 5.2vmin;
+    height: 5.2vmin;
+}
+
+.ship {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2vmin;
+    width: calc(5.2vmin *var(--width,1));
+    height: calc(5.2vmin *var(--height,1));
+    border-radius: 2.5vmin;
+}
+
+.btns {
+    font-size: inherit;
+    background-color: hsl(115, 63%, 51%);
+    padding: .5em 1em;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: .2em;
+    color: #333;
+}
+
+.thingsToShowAfterStart {
+    font-size: 2.4rem;
+    align-items: center;
+    flex-direction: column;
+}
+
+.displayedText {
+    margin: 2rem;
 }
 
 .onextwoSlot {
-    width: 100px;
-    height: 50px;
-    background-color: cornflowerblue;
-    margin: 15px;
-    display: flex;
+    --width: 2;
 }
 
 .onextwoSlot-vert {
-    width: 50px;
-    height: 100px;
-    background-color: cornflowerblue;
-    margin: 15px;
-    display: flex;
-    flex-wrap: wrap;
+   
+    --height: 2;
+    --width: 1;
 }
 
 .onexthreeSlot {
-    width: 150px;
-    height: 50px;
-    background-color: crimson;
-    margin: 15px;
-    display: flex;
+    --width: 3;
+
 }
 
 .onexthreeSlot-vert {
-    width: 50px;
-    height: 150px;
-    background-color: crimson;
-    margin: 15px;
-    display: flex;
-    flex-wrap: wrap;
+    --height: 3;
+    --width: 1;
 }
 
 .onexfourSlot {
-    width: 200px;
-    height: 50px;
-    background-color: cyan;
-    margin: 15px;
-    display: flex;
+    --width: 4;
 }
 
 .onexfourSlot-vert {
-    width: 50px;
-    height: 200px;
-    background-color: cyan;
-    margin: 15px;
-    display: flex;
-    flex-wrap: wrap;
+    --height: 4;
+    --width: 1;
+
 }
 
 .onexfiveSlot {
-    width: 250px;
-    height: 50px;
-    background-color: yellow;
-    margin: 15px;
-    display: flex;
+    --width: 5;
 }
 
 .onexfiveSlot-vert {
-    width: 50px;
-    height: 250px;
-    background-color: yellow;
-    margin: 15px;
+    --height: 5;
+    --width: 1;
+}
+
+
+
+.hit::after,
+.missed::after {
+    content: '';
+    border-radius: 100%;
+    position: absolute;
+    height: 2vmin;
+    width: 2vmin;
+}
+
+.hit,
+.missed {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.missed::after {
+    background-color: whitesmoke;
 }
 
-.ship div {
-    width: 50px;
-    height: 50px;
+.hit::after {
+    background-color: red;
 }
 
-.onextwo
-{
-    background-color: cornflowerblue;
-}
-
-.onexthree
-{
-    background-color: crimson;
-}
-
-.onexfour
-{
-    background-color: cyan;
-}
-
-.onexfive
-{
-    background-color: yellow;
-}
